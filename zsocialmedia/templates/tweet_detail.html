@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ tweet.content }}</h1>
+    <p>Created at: {{ tweet.created_at }}</p>
+    <a href="{% url 'tweet_list' %}">Back to Tweet list</a>
+</body>
+</html>
