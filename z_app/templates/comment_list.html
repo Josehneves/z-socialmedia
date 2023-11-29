@@ -1,0 +1,14 @@
+<h2>Comments for Tweet "{{ tweet.content }}"</h2>
+{% if comments %}
+<ul>
+    {% for comment in comments %}
+    <li>
+        {{ comment.user.username }}: {{ comment.text }}
+        - <a href="{% url 'comment_detail' tweet_id=tweet.pk comment_id=comment.pk %}">View</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No comments yet.</p>
+{% endif %}
+<a href="{% url 'comment_create' tweet_id=tweet.pk %}">Reply to Tweet</a>
