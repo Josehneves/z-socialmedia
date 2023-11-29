@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 
+# Create User Profile Model 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     follows = models.ManyToManyField("self",
@@ -14,6 +15,7 @@ class UserProfile(models.Model):
 class Tweet(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+# Create your models here.
 
     def __str__(self):
         return f'Tweet #{self.id}'
