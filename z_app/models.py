@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
-<<<<<<< HEAD
-# Create User Profile Model 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     follows = models.ManyToManyField("self",
@@ -11,14 +10,16 @@ class UserProfile(models.Model):
     
     def __str__(self):
         return self.user.username
-=======
-# Create your models here.
+    
+class Tweet(models.Model):
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
-from django.db import models
-from django.conf import settings
+    def __str__(self):
+        return f'Tweet #{self.id}'
 
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     tweet = models.ForeignKey(Tweet, related_name='comments', on_delete=models.CASCADE)
     text = models.TextField()
->>>>>>> b67d6d7959c94ca1a83f8d5defd1b346a5f20740
+

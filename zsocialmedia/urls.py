@@ -16,13 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import tweet_list, tweet_detail, tweet_new, tweet_edit, tweet_delete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', tweet_list, name='tweet_list'),
-    path('tweet/<int:pk>/', tweet_detail, name='tweet_detail'),
-    path('tweet/new/', tweet_new, name='tweet_new'),
-    path('tweet/<int:pk>/edit/', tweet_edit, name='tweet_edit'),
-    path('tweet/<int:pk>/delete/', tweet_delete, name='tweet_delete'),
+    path('', include('z_app.urls')),
 ]
