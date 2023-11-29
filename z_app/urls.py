@@ -7,7 +7,7 @@ from django.urls import path, include
 urlpatterns = [
    path('',views.home, name='home'),
    path('admin/', admin.site.urls),
-   path('tweets/', views.tweet_list, name='tweet_list'),
+   path('tweet/', views.tweet_list, name='tweet_list'),
    path('tweet/<int:pk>/', views.tweet_detail, name='tweet_detail'),
    path('tweet/new/', views.tweet_new, name='tweet_new'),
    path('tweet/<int:pk>/edit/', views.tweet_edit, name='tweet_edit'),

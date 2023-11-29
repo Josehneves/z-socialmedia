@@ -1,7 +1,9 @@
 <h1>Tweet List</h1>
 <ul>
-    {% for tweet in tweets %}
-        <li><a href="{% url 'tweet_detail' pk=tweet.pk %}">{{ tweet.content }}</a></li>
-    {% endfor %}
+  {% for tweet in tweets %}
+  <li>
+    <a href="{% url 'tweet_detail' pk=tweet.pk %}">{{ tweet.content }}</a>
+  </li>
+  {% endfor %}
 </ul>
 <a href="{% url 'tweet_new' %}">New Tweet</a>
