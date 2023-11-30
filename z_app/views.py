@@ -1,7 +1,7 @@
 # z_app views
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Comment
-# from .forms import CommentFormfrom django.shortcuts import render
+from .forms import CommentForm
 from .models import Tweet
 from .forms import TweetForm
 
@@ -11,11 +11,11 @@ def home(request):
 
 def tweet_list(request):
     tweets = Tweet.objects.all()
-    return render(request, 'z_app/templates/tweet_list.html', {'tweets': tweets})
+    return render(request, 'tweet_list.html', {'tweets': tweets})
 
 def tweet_detail(request, pk):
     tweet = get_object_or_404(Tweet, pk=pk)
-    return render(request, 'z_app/templates/tweet_detail.html', {'tweet': tweet})
+    return render(request, 'tweet_detail.html', {'tweet': tweet})
 
 def tweet_new(request):
     if request.method == "POST":
@@ -26,7 +26,7 @@ def tweet_new(request):
             return redirect('tweet_detail', pk=tweet.pk)
     else:
         form = TweetForm()
-    return render(request, 'z_app/templates/tweet_edit.html', {'form': form})
+    return render(request, 'tweet_new.html', {'form': form})
 
 def tweet_edit(request, pk):
     tweet = get_object_or_404(Tweet, pk=pk)
@@ -38,7 +38,7 @@ def tweet_edit(request, pk):
             return redirect('tweet_detail', pk=tweet.pk)
     else:
         form = TweetForm(instance=tweet)
-    return render(request, 'z_app/templates/tweet_edit.html', {'form': form})
+    return render(request, 'tweet_edit.html', {'form': form})
 
 def tweet_delete(request, pk):
     tweet = get_object_or_404(Tweet, pk=pk)

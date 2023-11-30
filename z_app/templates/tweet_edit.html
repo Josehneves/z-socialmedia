@@ -1,7 +1,6 @@
 <h1>Edit Tweet</h1>
 <form method="POST" class="post-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save changes</button>
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Save changes</button>
 </form>
 <a href="{% url 'tweet_list' %}">Cancel</a>
