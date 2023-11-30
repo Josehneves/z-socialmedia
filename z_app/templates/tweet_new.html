@@ -1,6 +1,7 @@
 <h1>Create New Tweet</h1>
 <form method="post" enctype="multipart/form-data">
-  {% csrf_token %} {{ form.as_p }}
+  {% csrf_token %}
+  {{ form.as_p }}
   <button type="submit">Post Tweet</button>
 </form>
 <a href="{% url 'tweet_list' %}">Back to Tweet List</a>

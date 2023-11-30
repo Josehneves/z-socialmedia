@@ -7,7 +7,8 @@ from .forms import TweetForm
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html', {})
+    tweets = Tweet.objects.all()
+    return render(request, 'home.html', {'tweets': tweets})
 
 def tweet_list(request):
     tweets = Tweet.objects.all()
@@ -70,6 +71,7 @@ def comment_detail(request, tweet_id, comment_id):
 
 def comment_update(request, tweet_id, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
+    tweet = get_object_or_404(Tweet, pk=tweet_id)
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():

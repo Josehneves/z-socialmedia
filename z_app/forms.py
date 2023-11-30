@@ -6,6 +6,9 @@ class TweetForm(forms.ModelForm):
     class Meta:
         model = Tweet
         fields = ('content',)
+        widgets = {
+            'content': forms.Textarea(attrs={'placeholder': 'Write your tweet here'}),
+        }
 
 class CommentForm(forms.ModelForm):
     class Meta:

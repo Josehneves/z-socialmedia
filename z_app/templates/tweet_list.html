@@ -1,9 +1,11 @@
 <h1>Tweet List</h1>
+
 <ul>
-  {% for tweet in tweets %}
+  {% if user.is_authenticated %}
+  {% if tweets %} {% for tweet in tweets %}
   <li>
-    <a href="{% url 'tweet_detail' pk=tweet.pk %}">{{ tweet.content }}</a>
+    <h5>{{ tweet.content }}</h5>
   </li>
-  {% endfor %}
+  {% endfor %} {% endif %}
+  {% endif %}
 </ul>
-<a href="{% url 'tweet_new' %}">New Tweet</a>

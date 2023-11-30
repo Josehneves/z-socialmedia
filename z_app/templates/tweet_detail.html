@@ -1,3 +1,5 @@
 <h1>{{ tweet.content }}</h1>
 <p>Created at: {{ tweet.created_at }}</p>
+<a href="{% url 'tweet_edit' tweet.id %}">Edit Tweet</a>
+<a href="{% url 'tweet_delete' tweet.id %}">Delete Tweet</a>
 <a href="{% url 'tweet_list' %}">Back to Tweet list</a>
