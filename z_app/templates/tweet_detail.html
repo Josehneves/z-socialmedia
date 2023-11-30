@@ -3,20 +3,4 @@
 <p>Created at: {{ tweet.created_at }}</p>
 <a href="{% url 'tweet_edit' tweet.id %}">Edit Tweet</a>
 <a href="{% url 'tweet_delete' tweet.id %}">Delete Tweet</a>
-<a href="{% url 'tweet_list' %}">Back to Tweet list</a>
-
-{% for comment in comments %}
-    <div>
-        <strong>{{ comment.user.username }}</strong>
-        <p>{{ comment.text }}</p>
-        {% if request.user.is_authenticated and request.user == comment.user %}
-            <a href="{% url 'comment_update' tweet.id comment.id %}">Edit</a>
-            <form action="{% url 'comment_delete' tweet.id comment.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Delete</button>
-            </form>
-        {% endif %}
-    </div>
-{% endfor %}
-
-{% include 'comment_form.html' %}
+<a href="{% url 'home' %}">Back to Tweet list</a>

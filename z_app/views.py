@@ -8,7 +8,7 @@ from .forms import TweetForm
 # Create your views here.
 def home(request):
     tweets = Tweet.objects.all()
-    return render(request, 'home.html', {'tweets': tweets})
+    return render(request, 'home.html', {'tweets': tweets, 'user': request.user})
 
 def tweet_list(request):
     tweets = Tweet.objects.all()
@@ -37,7 +37,7 @@ def tweet_detail(request, pk):
 
 def tweet_new(request):
     if request.method == "POST":
-        form = TweetForm(request.POST)
+        form = TweetForm(request.POST, request.FILES)
         if form.is_valid():
             tweet = form.save(commit=False)
             tweet.user = request.user
@@ -50,9 +50,10 @@ def tweet_new(request):
 def tweet_edit(request, pk):
     tweet = get_object_or_404(Tweet, pk=pk)
     if request.method == "POST":
-        form = TweetForm(request.POST, instance=tweet)
+        form = TweetForm(request.POST, request.FILES, instance=tweet)
         if form.is_valid():
             tweet = form.save(commit=False)
+            tweet.user = request.user
             tweet.save()
             return redirect('tweet_detail', pk=tweet.pk)
     else:

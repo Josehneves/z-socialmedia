@@ -5,8 +5,9 @@ from .models import Comment
 class TweetForm(forms.ModelForm):
     class Meta:
         model = Tweet
-        fields = ('content',)
+        fields = ('user', 'content',)
         widgets = {
+            'user': forms.HiddenInput(),
             'content': forms.Textarea(attrs={'placeholder': 'Write your tweet here'}),
         }
 

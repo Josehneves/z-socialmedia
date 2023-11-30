@@ -4,7 +4,7 @@
   {% if user.is_authenticated %}
   {% if tweets %} {% for tweet in tweets %}
   <li>
-    <a href="{% url 'tweet_detail' pk=tweet.pk %}">{{ tweet.content }}</a>
+    {{ tweet.user.username }}: <a href="{% url 'tweet_detail' pk=tweet.pk %}">{{ tweet.content }}</a>
   </li>
   {% endfor %} {% endif %}
   {% endif %}
