@@ -16,4 +16,6 @@ urlpatterns = [
    path('tweets/<int:tweet_id>/comments/new/', views.comment_create, name='comment_create'),
    path('tweets/<int:tweet_id>/comments/<int:comment_id>/edit/', views.comment_update, name='comment_update'),
    path('tweets/<int:tweet_id>/comments/<int:comment_id>/delete/', views.comment_delete, name='comment_delete'),
+   path('comment/edit/<int:tweet_id>/<int:comment_id>/', views.comment_update, name='comment_update'),
+   path('comment/delete/<int:tweet_id>/<int:comment_id>/', views.comment_delete, name='comment_delete'),
 ]
