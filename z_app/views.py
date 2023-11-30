@@ -40,6 +40,7 @@ def tweet_new(request):
         form = TweetForm(request.POST)
         if form.is_valid():
             tweet = form.save(commit=False)
+            tweet.user = request.user
             tweet.save()
             return redirect('tweet_detail', pk=tweet.pk)
     else:
