@@ -1,4 +1,4 @@
-<form method="POST" class="post-form" action="{% url 'tweet_edit' tweet.id %}">
+<form method="POST" class="post-form">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Save changes</button>

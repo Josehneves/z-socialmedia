@@ -35,10 +35,10 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile.save()
 post_save.connect(create_profile, sender=User)
 
-def create_tweet(sender, instance, created, **kwargs):
-    if created:
-        user_profile = UserProfile(user=instance)
-        user_profile.save()
-        tweet = Tweet(content=instance.text)
-        tweet.save()
-post_save.connect(create_tweet, sender=User)
+# def create_tweet(sender, instance, created, **kwargs):
+#     if created:
+#         user_profile = UserProfile(user=instance)
+#         user_profile.save()
+#         tweet = Tweet(content=instance.text)
+#         tweet.save()
+# post_save.connect(create_tweet, sender=User)
