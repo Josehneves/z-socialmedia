@@ -1,1 +1,0 @@
-web: gunicorn zsocialmedia.wsgi --log-file -
