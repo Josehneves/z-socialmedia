@@ -16,7 +16,24 @@ def tweet_list(request):
 
 def tweet_detail(request, pk):
     tweet = get_object_or_404(Tweet, pk=pk)
-    return render(request, 'tweet_detail.html', {'tweet': tweet})
+    comments = tweet.comments.all()
+    new_comment = None
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.tweet = tweet
+            new_comment.user = request.user
+            new_comment.save()
+            return redirect('tweet_detail', pk=tweet.pk)
+    else:
+        comment_form = CommentForm()
+
+    return render(request, 'tweet_detail.html', {
+        'tweet': tweet,
+        'comments': comments,
+        'form': comment_form
+    })
 
 def tweet_new(request):
     if request.method == "POST":

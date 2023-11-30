@@ -3,3 +3,14 @@
 <a href="{% url 'tweet_edit' tweet.id %}">Edit Tweet</a>
 <a href="{% url 'tweet_delete' tweet.id %}">Delete Tweet</a>
 <a href="{% url 'tweet_list' %}">Back to Tweet list</a>
+
+<div>
+    {% for comment in comments %}
+        <div>
+            <strong>{{ comment.user.username }}</strong>
+            <p>{{ comment.text }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+{% include 'comment_form.html' %}
