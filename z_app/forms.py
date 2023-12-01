@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import Tweet,Comment
 
 
 class SignUpForm(UserCreationForm):
@@ -29,3 +30,20 @@ class SignUpForm(UserCreationForm):
             self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
             self.fields['password2'].label = ''
             self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
+
+
+class TweetForm(forms.ModelForm):
+    class Meta:
+        model = Tweet
+        fields = ('content',)
+        widgets = {
+            'content': forms.Textarea(attrs={'placeholder': 'Write your tweet here'}),
+        }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']
+        widgets = {
+            'text': forms.Textarea(attrs={'placeholder': 'Write your comment here'}),
+        }

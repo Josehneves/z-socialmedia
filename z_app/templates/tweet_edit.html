@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<form class="tweet-edit-form" method="POST" class="post-form">
+  {% csrf_token %}
+  {{ form.as_p }}
+<div id="tweet-edit-options">
+  <button type="submit">Save</button>
+</form>
+|
+<a id="tweet-edit-options" href="{% url 'home' %}">Cancel</a>
+</div>
+
+{% endblock content %}

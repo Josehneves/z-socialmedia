@@ -1,0 +1,22 @@
+{% load static %}
+{% block content %}
+<h1 class="tweet-list-title">Your Feed</h1>
+  <ul class="tweet-list">
+    {% if user.is_authenticated %} 
+      {% if tweets %} 
+        {% for tweet in tweets %}
+        <div class="alert alert-dark" role="alert">
+
+                          <h5 class="card-title"> <a href="{% url 'profile' tweet.user.id %}">{{ tweet.user.username }}</a></h5>
+                          <a id="tweet-list-content" href="{% url 'tweet_detail' pk=tweet.pk %}">{{ tweet.content }}</a>
+                          <p class="card-text"><small class="text-muted">Created On: {{tweet.created_at }}</small></p>
+
+
+
+          </div>
+        {% endfor %} 
+      {% endif %} 
+    {% endif %}
+
+{% endblock %}
+

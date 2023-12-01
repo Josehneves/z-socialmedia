@@ -1,0 +1,6 @@
+<h2>Edit Comment</h2>
+<form action="{% url 'comment_update' tweet_id comment_id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save changes</button>
+</form>
