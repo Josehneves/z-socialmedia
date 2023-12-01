@@ -1,12 +1,5 @@
 # z_app views
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
-from django import forms
-from .forms import SignUpForm, TweetForm, CommentForm
-from .models import UserProfile, Tweet, Comment
-
+from django.shortcuts import render
 
 # Create your views here.
 def home(request):
