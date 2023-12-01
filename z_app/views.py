@@ -1,5 +1,12 @@
 # z_app views
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
+from .forms import SignUpForm, TweetForm, CommentForm
+from .models import UserProfile, Tweet, Comment
+
 
 # Create your views here.
 def home(request):
@@ -61,8 +68,6 @@ def register_newuser(request):
             return redirect('home')
         
     return render(request, 'register.html', {'form':form})
-
-
 
 def tweet_list(request):
     tweets = Tweet.objects.all()
