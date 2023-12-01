@@ -19,7 +19,7 @@ https://zsocialmedia-99c9ea6639a7.herokuapp.com/
 
 * Python
 * Django
-
+* HTML & CSS Bootstrap
 ## Authors
 
 * **Anthony Tirado**  - [Azuruo](https://github.com/azuruo)
