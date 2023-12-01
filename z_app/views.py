@@ -16,24 +16,7 @@ def tweet_list(request):
 
 def tweet_detail(request, pk):
     tweet = get_object_or_404(Tweet, pk=pk)
-    comments = tweet.comments.all()
-    new_comment = None
-    if request.method == 'POST':
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            new_comment.tweet = tweet
-            new_comment.user = request.user
-            new_comment.save()
-            return redirect('tweet_detail', pk=tweet.pk)
-    else:
-        comment_form = CommentForm()
-
-    return render(request, 'tweet_detail.html', {
-        'tweet': tweet,
-        'comments': comments,
-        'form': comment_form
-    })
+    return render(request, 'tweet_detail.html', {'tweet': tweet})
 
 def tweet_new(request):
     if request.method == "POST":
@@ -63,19 +46,7 @@ def tweet_edit(request, pk):
 def tweet_delete(request, pk):
     tweet = get_object_or_404(Tweet, pk=pk)
     tweet.delete()
-    return redirect('tweet_list')
-    
-def comment_delete(request, tweet_id, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id)
-    if comment.user != request.user:
-        return HttpResponseForbidden()
-
-    if request.method == "POST":
-        comment.delete()
-        return redirect('tweet_detail', pk=tweet_id)
-
-    return render(request, 'z_app/comment_confirm_delete.html', {'comment': comment, 'tweet_id': tweet_id})
-
+    return redirect('home')
 
 def comment_list(request, tweet_id):
     tweet = get_object_or_404(Tweet, pk=tweet_id)
@@ -100,22 +71,19 @@ def comment_detail(request, tweet_id, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     return render(request, 'z_app/templates/comment_detail.html', {'comment': comment})
 
-
 def comment_update(request, tweet_id, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
-    if comment.user != request.user:
-        return HttpResponseForbidden()
-
+    tweet = get_object_or_404(Tweet, pk=tweet_id)
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
-            form.save()
-            return redirect('tweet_detail', pk=tweet_id)
+            comment = form.save()
+            return redirect('comment_detail', tweet_id=tweet_id, comment_id=comment.pk)
     else:
         form = CommentForm(instance=comment)
-    return render(request, 'comment_edit.html', {
-    'form': form,
-    'tweet_id': tweet_id,
-    'comment_id': comment.id
-})
+    return render(request, 'z_app/comment_form.html', {'form': form, 'tweet': tweet})
 
+def comment_delete(request, tweet_id, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    comment.delete()
+    return redirect('comment_list', tweet_id=tweet_id)

@@ -1,9 +1,15 @@
-<h1>{{ tweet.content }}</h1>
-<p>Posted by: {{ tweet.user.username }}</p>
-<p>Created at: {{ tweet.created_at }}</p>
-<a href="{% url 'tweet_edit' tweet.id %}">Edit Tweet</a>
-<a href="{% url 'tweet_delete' tweet.id %}">Delete Tweet</a>
-<a href="{% url 'tweet_list' %}">Back to Tweet list</a>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 class="tweet-detail-username">{{ tweet.user.username }}</h1>
+<h1 class="tweet-detail-created-at">{{ tweet.created_at }}</h1>
+<h1 class="tweet-detail-content">{{ tweet.content }}</h1>
+<a href="{% url 'tweet_edit' tweet.id %}">Edit</a>
+|
+<a href="{% url 'tweet_delete' tweet.id %}">Delete</a>
+|
+<a href="{% url 'home' %}">All Posts</a>
 
 {% for comment in comments %}
     <div>
@@ -20,3 +26,5 @@
 {% endfor %}
 
 {% include 'comment_form.html' %}
+
+{% endblock content %}

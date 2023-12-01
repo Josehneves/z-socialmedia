@@ -1,6 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
 <form method="POST" class="post-form">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Save changes</button>
 </form>
 <a href="{% url 'home' %}">Cancel</a>
+
+{% endblock content %}

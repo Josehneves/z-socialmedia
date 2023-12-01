@@ -1,11 +1,12 @@
-<h1>Tweet List</h1>
-<a href="{% url 'tweet_new' %}">New Tweet</a>
-<ul>
-  {% if user.is_authenticated %}
-  {% if tweets %} {% for tweet in tweets %}
-  <li>
-    {{ tweet.user.username }}: <a href="{% url 'tweet_detail' pk=tweet.pk %}">{{ tweet.content }}</a>
+<h1 class="tweet-list-title">Your Feed</h1>
+<ul class="tweet-list">
+  {% if user.is_authenticated %} {% if tweets %} {% for tweet in tweets %}
+  <li class="tweet-list-username">
+    {{ tweet.user.username }} <br />
+    <div id="tweet-list-created-at">{{ tweet.created_at }} <br /></div>
+    <a id="tweet-list-content" href="{% url 'tweet_detail' pk=tweet.pk %}"
+      >{{ tweet.content }}</a
+    >
   </li>
-  {% endfor %} {% endif %}
-  {% endif %}
+  {% endfor %} {% endif %} {% endif %}
 </ul>

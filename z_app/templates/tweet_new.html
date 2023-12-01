@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
 <h1>Create New Tweet</h1>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
@@ -5,3 +9,5 @@
   <button type="submit">Post Tweet</button>
 </form>
 <a href="{% url 'home' %}">Back to Tweet List</a>
+
+{% endblock content %}

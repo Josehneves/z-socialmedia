@@ -1,0 +1,52 @@
+.tweet-list-title {
+    font-size: 3vw;
+    font-weight: bold;
+    margin-bottom: 3vw;
+    text-align: center;
+    color: black;
+}
+
+.tweet-list {
+    border: 0.25vw solid black;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+}
+
+.tweet-list-username {
+    font-size: 3vw;
+    margin: 50px;
+    padding-bottom: 15px;
+    text-align: left;
+    list-style: none;
+    color: black;
+    border-bottom: 0.25vw solid black;
+}
+
+#tweet-list-created-at {
+    font-size: 1vw;
+}
+
+#tweet-list-content {
+    color: black;
+}
+
+#tweet-list-content:hover {
+    color: grey;
+    text-decoration: none;
+}
+
+.tweet-detail-username {
+    font-size: 3vw;
+    font-weight: bold;
+}
+
+.tweet-detail-created-at {
+    font-size: 1vw;
+}
+
+.tweet-detail-content {
+    font-size: 3vw;
+    color: black;
+}
