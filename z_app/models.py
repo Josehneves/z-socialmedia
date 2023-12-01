@@ -18,7 +18,6 @@ class Tweet(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return f'Tweet #{self.id}'
@@ -35,11 +34,3 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile.follows.set([instance.userprofile.id])
         user_profile.save()
 post_save.connect(create_profile, sender=User)
-
-def create_tweet(sender, instance, created, **kwargs):
-    if created:
-        user_profile = UserProfile(user=instance)
-        user_profile.save()
-        tweet = Tweet(content=instance.text)
-        tweet.save()
-post_save.connect(create_tweet, sender=User)
